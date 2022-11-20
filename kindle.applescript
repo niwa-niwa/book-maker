@@ -1,11 +1,11 @@
 -- title of the book
-set title to "book-title"
+set title to "test"
 
 -- to save screencaptures
-set savepath to "~/Desktop/book/" & title
+set savepath to "~/Documents/E-Books/" & title
 
 -- number of pages in the book
-set pages to 4553
+set pages to 1
 
 -- name of application
 set target to "Kindle"
@@ -53,15 +53,16 @@ repeat with i from spage to pages
 	
 	set spath to (savepath & "_p" & dp & ".jpg")
 	
-	do shell script "screencapture " & spath
+	-- -R <x,y,w,h> capture screen rect
+	do shell script "screencapture -orx -t jpg -R 82,80,1008,1322 " & spath
 	
-	if cropx is not 0 and cropy is not 0 then
-		if resizew is not 0 then
-			do shell script "sips -c " & cropy & " " & cropx & " --resampleWidth " & resizew & " " & spath & " --out " & spath
-		else
-			do shell script "sips -c " & cropy & " " & cropx & " " & spath & " --out " & spath
-		end if
-	end if
+	--	if cropx is not 0 and cropy is not 0 then
+	--		if resizew is not 0 then
+	--			do shell script "sips -c " & cropy & " " & cropx & " --resampleWidth " & resizew & " " & spath & " --out " & spath
+	--		else
+	--			do shell script "sips -c " & cropy & " " & cropx & " " & spath & " --out " & spath
+	--		end if
+	--	end if
 	
 	tell application "System Events"
 		keystroke keychar
